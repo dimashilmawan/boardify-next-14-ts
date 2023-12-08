@@ -5,12 +5,9 @@ import { NextRequest, NextResponse } from "next/server";
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
-  beforeAuth() {
-    console.log("BEFORE");
-  },
+  beforeAuth() {},
   publicRoutes: ["/"],
   afterAuth(auth, req) {
-    console.log("AFTER");
     // handle users who aren't authenticated
     if (!auth.userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url });
