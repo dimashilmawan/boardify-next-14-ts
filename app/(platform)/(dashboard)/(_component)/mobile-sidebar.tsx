@@ -12,7 +12,7 @@ import { Sidebar } from "./sidebar";
 
 export const MobileSidebar = () => {
   const pathname = usePathname();
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
   const onOpen = useMobileSidebar((state) => state.onOpen);
   const onClose = useMobileSidebar((state) => state.onClose);
@@ -22,9 +22,9 @@ export const MobileSidebar = () => {
   //   setIsMounted(true);
   // }, []);
 
-  // useEffect(() => {
-  //   onClose();
-  // }, [pathname, onClose]);
+  useEffect(() => {
+    onClose();
+  }, [pathname, onClose]);
 
   // if (!isMounted) {
   //   return null;
