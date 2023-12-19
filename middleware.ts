@@ -15,7 +15,6 @@ export default authMiddleware({
     // redirect to original url if login user access public routes
     if (auth.userId && auth.isPublicRoute) {
       let url = "/select-org";
-      console.log("2ND");
       if (auth.orgId) {
         url = `/organization/${auth.orgId}`;
       }
@@ -24,7 +23,6 @@ export default authMiddleware({
     }
     // redirect them to organization selection page
     if (auth.userId && !auth.orgId && req.nextUrl.pathname !== "/select-org") {
-      console.log("3RD");
       const selectOrg = new URL("/select-org", req.url);
       return NextResponse.redirect(selectOrg);
     }

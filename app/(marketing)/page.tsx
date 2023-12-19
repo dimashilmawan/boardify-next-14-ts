@@ -5,7 +5,6 @@ import { Medal } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
-  console.log("HOME");
   return (
     // <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
     <div className=" pt-36">

@@ -27,7 +27,6 @@ export const createBoard = async (prevState: State, formData: FormData) => {
   });
 
   if (!validatedFields.success) {
-    console.log("there is an error");
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Boards.",

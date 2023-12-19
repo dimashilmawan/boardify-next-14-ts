@@ -1,21 +1,28 @@
 "use client";
 
-import { createBoard } from "@/actions/board";
+import { createBoard } from "@/actions/create-board";
 import { Button } from "@/components/ui/button";
+import { useAction } from "@/hooks/use-action";
 import { useFormState, useFormStatus } from "react-dom";
 
-interface FormProps {
-  boards: {
-    id: string;
-    title: string;
-  }[];
-}
+export const Form = () => {
+  const { execute, fieldErrors } = useAction(createBoard, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
-export const Form = ({ boards }: FormProps) => {
-  const initialState = { message: "", errors: {} };
-  const [state, dispatch] = useFormState(createBoard, initialState);
+  const onSubmit = (formData: FormData) => {
+    const title = formData.get("title");
+    if (!title || typeof title !== "string") return;
+
+    execute({ title });
+  };
   return (
-    <form action={dispatch}>
+    <form action={onSubmit}>
       <div className="flex gap-2">
         <input
           id="title"
@@ -28,7 +35,7 @@ export const Form = ({ boards }: FormProps) => {
         <CreateBoardButton />
       </div>
       <div id="title-error" aria-live="polite" aria-atomic="true">
-        {state?.errors?.title?.map((error: string) => (
+        {fieldErrors?.title?.map((error: string) => (
           <span key={error} className="rounded-md bg-red-100 p-2">
             {error}
           </span>
