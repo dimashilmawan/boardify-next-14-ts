@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -23,7 +24,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     {
       id,
       label,
-      type,
+      type = "text",
       required,
       defaultValue = "",
       placeholder,
@@ -52,7 +53,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             defaultValue={defaultValue}
             placeholder={placeholder}
             disabled={pending || disabled}
-            className={cn("px-2 py-1 text-sm", className)}
+            className={cn(" text-sm", className)}
             aria-describedby={`${id}-error`}
             onBlur={onBlur}
           />
