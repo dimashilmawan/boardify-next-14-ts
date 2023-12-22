@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { FormInput } from "./form-input";
 import { FormSubmit } from "./form-submit";
 import { toast } from "sonner";
+import { FormPicker } from "./form-picker";
 
 type FormPopoverProps = {
   children: React.ReactNode;
@@ -54,6 +55,7 @@ export const FormPopover = ({
         <h2 className="text-center text-sm font-medium">Create Board</h2>
         <form action={onSubmit} className="mt-3">
           <div>
+            <FormPicker id="image" errors={fieldErrors} />
             <FormInput
               id="title"
               label="Board title"
