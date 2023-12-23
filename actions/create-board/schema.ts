@@ -9,4 +9,8 @@ export const CreateBoard = z.object({
     .min(3, {
       message: "Title field must be more than 3 characters",
     }),
+  image: z.string({
+    required_error: "Image field is required",
+    invalid_type_error: "Image field must be a string",
+  }),
 });

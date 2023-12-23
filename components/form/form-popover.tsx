@@ -40,7 +40,9 @@ export const FormPopover = ({
     },
   });
   const onSubmit = (formData: FormData) => {
-    execute({ title: formData.get("title") as string });
+    const title = formData.get("title") as string;
+    const image = formData.get("image") as string;
+    execute({ title, image });
   };
 
   return (
@@ -50,7 +52,7 @@ export const FormPopover = ({
         align={align}
         side={side}
         sideOffset={sideOffset}
-        className="w-80 p-4 pt-8"
+        className="w-[22rem] p-4 pt-8"
       >
         <h2 className="text-center text-sm font-medium">Create Board</h2>
         <form action={onSubmit} className="mt-3">
