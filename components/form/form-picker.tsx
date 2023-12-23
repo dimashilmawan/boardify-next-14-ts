@@ -33,7 +33,6 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
 
         switch (res.type) {
           case "success":
-            console.log(res.response);
             const fetchedImages = res.response as Random[];
             setImages(fetchedImages);
             break;
@@ -99,7 +98,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               <Link
                 href={image.links.html}
                 target="_blank"
-                className="absolute  inset-x-0 bottom-0 truncate bg-black/60 p-1 text-center text-[10px] text-white opacity-0 transition group-hover:opacity-100"
+                className="absolute inset-x-0 bottom-0 truncate bg-black/60 p-1 text-center text-[10px] text-white opacity-100 transition group-hover:opacity-100 lg:opacity-0"
               >
                 {image.user.name}
               </Link>
