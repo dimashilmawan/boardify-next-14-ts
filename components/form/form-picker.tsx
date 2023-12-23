@@ -87,7 +87,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
                 fill
                 src={image.urls.thumb}
                 alt="unsplash image thumb"
-                sizes="100vh"
+                sizes="97vw"
                 className="object-cover"
               />
               {selectedImageId === image.id && (

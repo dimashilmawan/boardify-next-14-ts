@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Info } from "./_components/info";
 import { BoardList } from "./_components/board-list";
+import { Suspense } from "react";
 
 export default async function Page() {
   return (
@@ -8,7 +9,9 @@ export default async function Page() {
       <Info />
       <Separator />
       <div>
-        <BoardList />
+        <Suspense fallback={<BoardList.Skeleton />}>
+          <BoardList />
+        </Suspense>
       </div>
     </div>
   );

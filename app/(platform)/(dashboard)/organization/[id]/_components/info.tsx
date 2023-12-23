@@ -16,6 +16,7 @@ export const Info = () => {
           fill
           className="rounded-md object-cover"
           src={organization?.imageUrl!}
+          sizes="97vw"
           alt="organization image"
         />
       </div>
