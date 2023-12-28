@@ -3,34 +3,8 @@ import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { BoardNav } from "./_components/board-nav";
-
-const keyStr =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
-
-const hex2rgb = (hex: string) => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  return { r, g, b };
-};
-
-const generateBlurDataUrl = (hex: string) => {
-  const { r, g, b } = hex2rgb(hex);
-
-  return rgbDataURL(r, g, b);
-};
+import { generateBlurDataUrl } from "@/lib/blur-data";
+import { blurHashToDataURL } from "@/lib/blurhash-to-base64";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const { orgId } = auth();
@@ -67,9 +41,9 @@ export default async function Layout({
         alt="board backgroud image"
         className="object-cover object-center"
         placeholder="blur"
-        blurDataURL={generateBlurDataUrl(board.imageColor)}
+        blurDataURL={blurHashToDataURL(board.imageBlurhash)}
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/20" />
       <BoardNav data={board} />
       <div className="relative z-30 h-full pt-28">{children}</div>
     </div>

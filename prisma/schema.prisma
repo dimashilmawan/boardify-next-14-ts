@@ -20,7 +20,7 @@ model Board {
   imageFullUrl  String   @db.Text
   imageLinkHTML String   @db.Text
   imageUserName String   @db.Text
-  imageColor    String
+  imageBlurhash String   @db.Text
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

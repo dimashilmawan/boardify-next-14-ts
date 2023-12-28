@@ -41,7 +41,7 @@ export const BoardTitleForm = ({ data }: { data: Board }) => {
   const onSubmit = (formData: FormData) => {
     const titleInput = formData.get("title") as string;
 
-    if (titleInput === title) return;
+    if (titleInput === title) return disableEditing();
 
     execute({ id: data.id, title: titleInput });
   };
@@ -58,7 +58,7 @@ export const BoardTitleForm = ({ data }: { data: Board }) => {
           id="title"
           defaultValue={title}
           onBlur={onBlur}
-          className="border-none bg-transparent px-2 py-1 pb-[6px] text-lg font-bold text-white focus-visible:outline-none focus-visible:ring-transparent"
+          className="border-none bg-transparent px-3 py-1 pb-[6px] text-lg font-bold text-white focus-visible:outline-none focus-visible:ring-transparent"
         />
       </form>
     );
@@ -66,7 +66,7 @@ export const BoardTitleForm = ({ data }: { data: Board }) => {
   return (
     <Button
       variant="transparent"
-      className="px-2 py-1 text-lg font-bold"
+      className="px-3 py-1 text-lg font-bold"
       onClick={enableEditing}
     >
       {title}
