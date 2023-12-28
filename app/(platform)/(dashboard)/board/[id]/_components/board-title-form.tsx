@@ -39,9 +39,11 @@ export const BoardTitleForm = ({ data }: { data: Board }) => {
   };
 
   const onSubmit = (formData: FormData) => {
-    const title = formData.get("title") as string;
+    const titleInput = formData.get("title") as string;
 
-    execute({ id: data.id, title });
+    if (titleInput === title) return;
+
+    execute({ id: data.id, title: titleInput });
   };
 
   const onBlur = () => {

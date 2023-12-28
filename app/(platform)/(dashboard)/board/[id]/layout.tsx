@@ -59,11 +59,7 @@ export default async function Layout({
   if (!board) return notFound();
 
   return (
-    <div
-      // className="relative h-full w-full bg-cover bg-center bg-no-repeat"
-      className="relative h-full w-full "
-      // style={{ backgroundImage: `url(${board.imageFullUrl})` }}
-    >
+    <div className="relative h-full w-full ">
       <Image
         src={board.imageFullUrl}
         priority
@@ -75,7 +71,7 @@ export default async function Layout({
       />
       <div className="absolute inset-0 bg-black/30" />
       <BoardNav data={board} />
-      <div>{children}</div>
+      <div className="relative z-30 h-full pt-28">{children}</div>
     </div>
   );
 }
