@@ -74,7 +74,7 @@ export default async function Layout({
         blurDataURL={generateBlurDataUrl(board.imageColor)}
       />
       <div className="absolute inset-0 bg-black/30" />
-      <BoardNav />
+      <BoardNav data={board} />
       <div>{children}</div>
     </div>
   );

@@ -58,7 +58,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             onBlur={onBlur}
           />
         </div>
-        <FormErrors id={id} errors={errors} />
+        {errors && <FormErrors id={id} errors={errors} />}
       </div>
     );
   },
