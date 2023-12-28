@@ -80,7 +80,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
                 disabled={pending}
                 readOnly
                 checked={selectedImageId === image.id}
-                defaultValue={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+                defaultValue={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}|${image.color}`}
                 className="hidden"
               />
               <Image

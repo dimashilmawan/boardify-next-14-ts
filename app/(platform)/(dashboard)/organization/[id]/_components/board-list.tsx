@@ -25,7 +25,7 @@ export const BoardList = async () => {
           return (
             <Link
               key={board.id}
-              href={`/board/{board.id}`}
+              href={`/board/${board.id}`}
               className="group relative aspect-video overflow-hidden rounded-md "
               // style={{ backgroundImage: `url(${board.imageThumbUrl})` }}
             >
