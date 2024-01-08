@@ -36,7 +36,7 @@ export const BoardList = async () => {
                 sizes="97vw"
                 className="object-cover transition-all group-hover:scale-110"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40  opacity-100 transition-all  group-hover:bg-black/5">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40  opacity-100 transition-all  group-hover:bg-black/0">
                 <p className="p-2 text-center capitalize text-white lg:text-xl">
                   {board.title}
                 </p>

@@ -3,7 +3,6 @@ import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { BoardNav } from "./_components/board-nav";
-import { generateBlurDataUrl } from "@/lib/blur-data";
 import { blurHashToDataURL } from "@/lib/blurhash-to-base64";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
@@ -36,7 +35,6 @@ export default async function Layout({
     <div className="relative h-full w-full ">
       <Image
         src={board.imageFullUrl}
-        priority
         fill
         alt="board backgroud image"
         className="object-cover object-center"
@@ -45,7 +43,7 @@ export default async function Layout({
       />
       <div className="absolute inset-0 bg-black/20" />
       <BoardNav data={board} />
-      <div className="relative z-30 h-full pt-28">{children}</div>
+      <div className="relative z-30 h-full pt-16">{children}</div>
     </div>
   );
 }
