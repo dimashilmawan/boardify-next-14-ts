@@ -1,6 +1,7 @@
 "use client";
 
 import { ListWithCards } from "@/types";
+import { ListHeader } from "./list-header";
 
 type ListItemProps = {
   data: ListWithCards;
@@ -8,5 +9,11 @@ type ListItemProps = {
 };
 
 export const ListItem = ({ data, index }: ListItemProps) => {
-  return <li className="w-64 select-none bg-yellow-400">{data.title}</li>;
+  return (
+    <li className="w-64 select-none ">
+      <div className="rounded-md bg-white/80 shadow-md">
+        <ListHeader data={data} />
+      </div>
+    </li>
+  );
 };
