@@ -22,11 +22,13 @@ export const ListForm = () => {
   const { execute, fieldErrors } = useAction(createList, {
     onSuccess: (data) => {
       toast.success(`List '${data.title}' created successfully`);
-      disableEditing();
       // router.refresh();
     },
     onError: (error) => {
       toast.error(error);
+    },
+    onComplete() {
+      disableEditing();
     },
   });
 
@@ -56,13 +58,13 @@ export const ListForm = () => {
   }
 
   let content = (
-    <button
-      className="flex w-full items-center gap-2 rounded-md bg-white/80 p-3 text-sm font-medium hover:bg-white/50"
+    <Button
+      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/80 p-3 text-sm font-medium text-inherit hover:bg-white/50"
       onClick={enableEditing}
     >
       <Plus className="h-4 w-4" />
       <span>Add a List</span>
-    </button>
+    </Button>
   );
 
   if (isEditing) {

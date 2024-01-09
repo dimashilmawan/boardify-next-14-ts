@@ -11,7 +11,7 @@ type ListItemProps = {
 export const ListItem = ({ data, index }: ListItemProps) => {
   return (
     <li className="w-64 select-none ">
-      <div className="rounded-md bg-white/80 shadow-md">
+      <div className="rounded-md bg-white/80 shadow-md transition [&:has(button:hover)]:bg-white/50">
         <ListHeader data={data} />
       </div>
     </li>

@@ -58,7 +58,7 @@ export const BoardTitleForm = ({ data }: { data: Board }) => {
           id="title"
           defaultValue={title}
           onBlur={onBlur}
-          className="border-none bg-transparent px-3 py-1 pb-[6px] text-lg font-bold text-white focus-visible:outline-none focus-visible:ring-transparent"
+          className="border-none bg-transparent px-3 py-1 pb-[5px] text-lg font-bold text-white focus-visible:outline-none focus-visible:ring-transparent"
         />
       </form>
     );

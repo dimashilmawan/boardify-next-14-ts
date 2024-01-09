@@ -2,6 +2,7 @@
 
 import { updateList } from "@/actions/update-list";
 import { FormInput } from "@/components/form/form-input";
+import { Button } from "@/components/ui/button";
 import { useAction } from "@/hooks/use-action";
 import { ListWithCards } from "@/types";
 import { useRef, useState } from "react";
@@ -14,26 +15,35 @@ export const ListHeader = ({ data }: { data: ListWithCards }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(data.title);
 
-  const {} = useAction(updateList, {
+  const { execute } = useAction(updateList, {
     onSuccess(data) {
       toast.success(`Renamed to '${data.title}'`);
       setTitle(data.title);
-      disableEditing();
     },
     onError(error) {
       toast.success(error);
     },
+    onComplete() {
+      disableEditing();
+    },
   });
 
-  function onSubmit(formData: FormData) {}
+  function onSubmit(formData: FormData) {
+    const title = formData.get("title") as string;
+    const id = formData.get("id") as string;
+    const boardId = formData.get("board-id") as string;
+
+    if (title === data.title) return disableEditing();
+
+    execute({ id, title, boardId });
+  }
 
   function onBlur() {
     formRef?.current?.requestSubmit();
-    disableEditing();
   }
 
   function onKeyDown(event: KeyboardEvent) {
-    if (event.key === "Escape") disableEditing();
+    if (event.key === "Escape") formRef?.current?.requestSubmit();
   }
 
   function enableEditing() {
@@ -63,11 +73,15 @@ export const ListHeader = ({ data }: { data: ListWithCards }) => {
           />
           <input type="hidden" name="id" value={data.id} />
           <input type="hidden" name="board-id" value={data.boardId} />
+          <button type="submit" hidden />
         </form>
       ) : (
-        <button className="w-full p-3 px-5 text-left" onClick={enableEditing}>
+        <Button
+          className="h-auto w-full justify-start bg-inherit p-3 px-5 text-inherit hover:bg-inherit "
+          onClick={enableEditing}
+        >
           {title}
-        </button>
+        </Button>
       )}
     </div>
   );

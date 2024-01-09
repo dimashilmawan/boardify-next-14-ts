@@ -18,12 +18,15 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { id, title } = data;
+  const { id, title, boardId } = data;
 
-  let board;
+  let list;
 
   try {
-    board = await db.board.update({ where: { id, orgId }, data: { title } });
+    list = await db.list.update({
+      where: { id, boardId, board: { orgId } },
+      data: { title },
+    });
   } catch (error) {
     console.log(error);
     return {
@@ -31,8 +34,8 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  revalidatePath(`/board/${board.id}`);
-  return { data: board };
+  revalidatePath(`/board/${boardId}`);
+  return { data: list };
 };
 
 export const updateList = createSafeAction(UpdateList, handler);
