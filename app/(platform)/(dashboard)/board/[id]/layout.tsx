@@ -36,6 +36,7 @@ export default async function Layout({
       <Image
         src={board.imageFullUrl}
         fill
+        priority
         alt="board backgroud image"
         className="object-cover object-center"
         placeholder="blur"

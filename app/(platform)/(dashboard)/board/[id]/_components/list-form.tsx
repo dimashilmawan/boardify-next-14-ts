@@ -23,7 +23,7 @@ export const ListForm = () => {
     onSuccess: (data) => {
       toast.success(`List '${data.title}' created successfully`);
       disableEditing();
-      router.refresh();
+      // router.refresh();
     },
     onError: (error) => {
       toast.error(error);

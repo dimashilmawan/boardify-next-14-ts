@@ -23,7 +23,21 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   let list;
 
   try {
-    list = await db.list.create({ data: { title, order: 1, boardId } });
+    const board = await db.board.findUnique({ where: { id: boardId, orgId } });
+
+    if (!board) return { error: "Board not found" };
+
+    const lastList = await db.list.findFirst({
+      where: { boardId },
+      orderBy: { order: "desc" },
+      select: { order: true },
+    });
+
+    console.log(lastList);
+
+    const newOrder = lastList ? lastList.order + 1 : 1;
+
+    list = await db.list.create({ data: { title, order: newOrder, boardId } });
   } catch (error) {
     console.log(error);
     return {
@@ -31,7 +45,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  // revalidatePath(`/board/${board.id}`);
+  revalidatePath(`/board/${boardId}`);
   return { data: list };
 };
 
