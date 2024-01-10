@@ -90,13 +90,12 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           </Button>
           <Separator />
           <form action={onCopy}>
-            <input hidden id="id" name="id" value={data.id} readOnly />
+            <input hidden id="id" name="id" defaultValue={data.id} />
             <input
               hidden
               id="board-id"
               name="board-id"
-              value={data.boardId}
-              readOnly
+              defaultValue={data.boardId}
             />
             <FormSubmit
               variant="ghost"
@@ -107,13 +106,12 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           </form>
           <Separator />
           <form action={onDelete}>
-            <input hidden id="id" name="id" value={data.id} readOnly />
+            <input hidden id="id" name="id" defaultValue={data.id} />
             <input
               hidden
               id="board-id"
               name="board-id"
-              value={data.boardId}
-              readOnly
+              defaultValue={data.boardId}
             />
             <FormSubmit
               variant="destructive"

@@ -15,7 +15,7 @@ type ListHeaderProps = {
   onAddCard: () => void;
 };
 
-export const ListHeader = ({ data }: ListHeaderProps) => {
+export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -68,7 +68,7 @@ export const ListHeader = ({ data }: ListHeaderProps) => {
   return (
     <div className="flex items-center justify-between pr-1 text-sm font-semibold">
       {isEditing ? (
-        <form ref={formRef} action={onSubmit} className="w-full p-3">
+        <form ref={formRef} action={onSubmit} className="w-full p-3 pb-1">
           <FormInput
             id="title"
             ref={inputRef}
@@ -77,25 +77,24 @@ export const ListHeader = ({ data }: ListHeaderProps) => {
             placeholder="Enter list title.."
             className=" h-5 truncate rounded-[3px] border-0 px-2 pb-[9px] transition focus-visible:bg-white/90 "
           />
-          <input hidden id="id" name="id" value={data.id} readOnly />
+          <input hidden id="id" name="id" defaultValue={data.id} />
           <input
             hidden
             id="board-id"
             name="board-id"
-            value={data.boardId}
-            readOnly
+            defaultValue={data.boardId}
           />
           <button type="submit" hidden />
         </form>
       ) : (
         <Button
-          className="h-auto w-full justify-start bg-inherit p-3 px-5 text-inherit hover:bg-inherit "
+          className="h-auto w-full justify-start bg-inherit p-3 px-5 pb-1 text-inherit hover:bg-inherit "
           onClick={enableEditing}
         >
           {title}
         </Button>
       )}
-      <ListOptions data={data} onAddCard={() => {}} />
+      <ListOptions data={data} onAddCard={onAddCard} />
     </div>
   );
 };

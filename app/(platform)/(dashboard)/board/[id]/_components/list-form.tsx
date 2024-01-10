@@ -6,17 +6,14 @@ import { FormInput } from "@/components/form/form-input";
 import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
-import { useParams } from "next/navigation";
 import { useAction } from "@/hooks/use-action";
 import { createList } from "@/actions/create-list";
 import { toast } from "sonner";
 
-export const ListForm = () => {
+export const ListForm = ({ boardId }: { boardId: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
-
-  const params = useParams();
 
   const { execute, fieldErrors } = useAction(createList, {
     onSuccess: (data) => {
@@ -79,7 +76,7 @@ export const ListForm = () => {
           errors={fieldErrors}
           className="h-7 border-transparent px-2 py-1 text-sm font-medium transition hover:border-input "
         />
-        <input hidden name="board-id" value={params.id} readOnly />
+        <input hidden name="board-id" defaultValue={boardId} />
         <div className="flex items-center gap-2">
           <FormSubmit>Add</FormSubmit>
           <Button

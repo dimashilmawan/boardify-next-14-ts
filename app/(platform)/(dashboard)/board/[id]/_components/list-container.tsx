@@ -22,7 +22,7 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
       {orderedData.map((list, index) => {
         return <ListItem key={list.id} index={index} data={list} />;
       })}
-      <ListForm />
+      <ListForm boardId={boardId} />
       <li className="w-1 shrink-0 " />
     </ol>
   );
