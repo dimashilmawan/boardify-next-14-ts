@@ -7,7 +7,7 @@ import db from "@/lib/db";
 import { createSafeAction } from "@/lib/create-safe-action";
 
 import { InputType, ReturnType } from "./types";
-import { UpdateList } from "./schema";
+import { DeleteList } from "./schema";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
@@ -18,23 +18,17 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { id, title, boardId } = data;
+  const { id, boardId } = data;
 
   let list;
 
   try {
-    // list = await db.list.update({
-    //   where: { id, boardId, board: { orgId } },
-    //   data: { title },
-    // });
-    list = await db.list.update({
-      where: { id },
-      data: { title },
-    });
+    // list = await db.list.delete({ where: { id, boardId, board: { orgId } } });
+    list = await db.list.delete({ where: { id } });
   } catch (error) {
     console.log(error);
     return {
-      error: "Failed to update.",
+      error: "Failed to delete.",
     };
   }
 
@@ -42,6 +36,4 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   return { data: list };
 };
 
-export const updateList = createSafeAction(UpdateList, handler);
-
-////////////////////////////////////////////////////////////
+export const deleteList = createSafeAction(DeleteList, handler);

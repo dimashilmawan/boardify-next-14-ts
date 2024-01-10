@@ -4,12 +4,18 @@ import { updateList } from "@/actions/update-list";
 import { FormInput } from "@/components/form/form-input";
 import { Button } from "@/components/ui/button";
 import { useAction } from "@/hooks/use-action";
-import { ListWithCards } from "@/types";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useEventListener } from "usehooks-ts";
+import { ListOptions } from "./list-options";
+import { List } from "@prisma/client";
 
-export const ListHeader = ({ data }: { data: ListWithCards }) => {
+type ListHeaderProps = {
+  data: List;
+  onAddCard: () => void;
+};
+
+export const ListHeader = ({ data }: ListHeaderProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -60,7 +66,7 @@ export const ListHeader = ({ data }: { data: ListWithCards }) => {
   useEventListener("keydown", onKeyDown);
 
   return (
-    <div className="flex items-center justify-between text-sm font-semibold">
+    <div className="flex items-center justify-between pr-1 text-sm font-semibold">
       {isEditing ? (
         <form ref={formRef} action={onSubmit} className="w-full p-3">
           <FormInput
@@ -71,8 +77,14 @@ export const ListHeader = ({ data }: { data: ListWithCards }) => {
             placeholder="Enter list title.."
             className=" h-5 truncate rounded-[3px] border-0 px-2 pb-[9px] transition focus-visible:bg-white/90 "
           />
-          <input type="hidden" name="id" value={data.id} />
-          <input type="hidden" name="board-id" value={data.boardId} />
+          <input hidden id="id" name="id" value={data.id} readOnly />
+          <input
+            hidden
+            id="board-id"
+            name="board-id"
+            value={data.boardId}
+            readOnly
+          />
           <button type="submit" hidden />
         </form>
       ) : (
@@ -83,6 +95,7 @@ export const ListHeader = ({ data }: { data: ListWithCards }) => {
           {title}
         </Button>
       )}
+      <ListOptions data={data} onAddCard={() => {}} />
     </div>
   );
 };

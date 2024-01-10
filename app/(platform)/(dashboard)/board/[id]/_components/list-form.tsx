@@ -6,7 +6,7 @@ import { FormInput } from "@/components/form/form-input";
 import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useAction } from "@/hooks/use-action";
 import { createList } from "@/actions/create-list";
 import { toast } from "sonner";
@@ -17,12 +17,10 @@ export const ListForm = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const params = useParams();
-  const router = useRouter();
 
   const { execute, fieldErrors } = useAction(createList, {
     onSuccess: (data) => {
       toast.success(`List '${data.title}' created successfully`);
-      // router.refresh();
     },
     onError: (error) => {
       toast.error(error);
@@ -59,7 +57,7 @@ export const ListForm = () => {
 
   let content = (
     <Button
-      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/80 p-3 text-sm font-medium text-inherit hover:bg-white/50"
+      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/80 p-3 text-sm font-medium text-inherit hover:bg-white/60"
       onClick={enableEditing}
     >
       <Plus className="h-4 w-4" />
