@@ -68,7 +68,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   return (
     <div className="flex items-center justify-between pr-1 text-sm font-semibold">
       {isEditing ? (
-        <form ref={formRef} action={onSubmit} className="w-full p-3 pb-1">
+        <form ref={formRef} action={onSubmit} className="w-full p-3 ">
           <FormInput
             id="title"
             ref={inputRef}
@@ -88,7 +88,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
         </form>
       ) : (
         <Button
-          className="h-auto w-full justify-start bg-inherit p-3 px-5 pb-1 text-inherit hover:bg-inherit "
+          className="h-auto w-full justify-start bg-inherit p-3 px-5 text-inherit hover:bg-inherit "
           onClick={enableEditing}
         >
           {title}

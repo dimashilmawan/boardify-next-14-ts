@@ -24,7 +24,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
 
   try {
     // list = await db.list.delete({ where: { id, boardId, board: { orgId } } });
-    list = await db.list.delete({ where: { id } });
+    list = await db.list.delete({ where: { id, board: { orgId } } });
   } catch (error) {
     console.log(error);
     return {
