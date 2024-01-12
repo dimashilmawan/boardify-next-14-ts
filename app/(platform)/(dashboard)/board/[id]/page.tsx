@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   });
 
   return (
-    <div className="h-full w-full overflow-x-auto p-4">
+    <div className="h-full w-full overflow-x-auto p-4 ">
       <ListContainer boardId={params.id} data={lists} />
     </div>
   );

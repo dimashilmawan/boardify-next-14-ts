@@ -5,7 +5,10 @@ import { ListHeader } from "./list-header";
 import { useRef, useState } from "react";
 import { CardForm } from "./card-form";
 import { CardItem } from "./card-item";
-import { Draggable } from "@hello-pangea/dnd";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { cn } from "@/lib/utils";
+
+const cl = "[&:has(button:hover)]:bg-white/70";
 
 type ListItemProps = {
   data: ListWithCards;
@@ -32,30 +35,33 @@ export const ListItem = ({ data, index }: ListItemProps) => {
       {(provided) => (
         <li
           {...provided.draggableProps}
-          ref={provided.innerRef}
           {...provided.dragHandleProps}
-          className="w-64 shrink-0 select-none "
+          ref={provided.innerRef}
+          className="h-min w-64 shrink-0 rounded-md bg-white/90 shadow-md transition hover:bg-white/80"
         >
-          {/* <div
-            {...provided.dragHandleProps}
-            className="rounded-md bg-white/80 shadow-md backdrop-blur-[2px] transition [&:has(button:hover)]:bg-white/70"
-          > */}
-          <div className="rounded-md bg-emerald-600 shadow-md backdrop-blur-[2px] transition [&:has(button:hover)]:bg-white/70">
-            <ListHeader data={data} onAddCard={enableEditing} />
-            <ol className="flex flex-col gap-2 px-3">
-              {data.cards.map((card, index) => (
-                <CardItem key={card.id} data={card} index={index} />
-              ))}
-            </ol>
-            <CardForm
-              ref={textareaRef}
-              listId={data.id}
-              boardId={data.boardId}
-              isEditing={isEditing}
-              enableEditing={enableEditing}
-              disableEditing={disableEditing}
-            />
-          </div>
+          <ListHeader data={data} onAddCard={enableEditing} />
+          <Droppable droppableId={data.id} type="card">
+            {(provided) => (
+              <ol
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                className="flex flex-col gap-2 px-3 "
+              >
+                {data.cards.map((card, index) => (
+                  <CardItem key={card.id} data={card} index={index} />
+                ))}
+                {provided.placeholder}
+              </ol>
+            )}
+          </Droppable>
+          <CardForm
+            ref={textareaRef}
+            listId={data.id}
+            boardId={data.boardId}
+            isEditing={isEditing}
+            enableEditing={enableEditing}
+            disableEditing={disableEditing}
+          />
         </li>
       )}
     </Draggable>

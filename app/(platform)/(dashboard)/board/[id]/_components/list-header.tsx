@@ -66,7 +66,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   useEventListener("keydown", onKeyDown);
 
   return (
-    <div className="flex items-center justify-between bg-yellow-300 pr-1 text-sm font-semibold">
+    <div className="flex items-center justify-between pr-1 text-sm font-semibold">
       {isEditing ? (
         <form ref={formRef} action={onSubmit} className="w-full p-3 ">
           <FormInput
@@ -87,12 +87,9 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
           <button type="submit" hidden />
         </form>
       ) : (
-        <Button
-          className="h-auto w-full justify-start bg-inherit p-3 px-5 text-inherit hover:bg-inherit "
-          onClick={enableEditing}
-        >
+        <button className="w-full p-3 px-5 text-left" onClick={enableEditing}>
           {title}
-        </Button>
+        </button>
       )}
       <ListOptions data={data} onAddCard={onAddCard} />
     </div>

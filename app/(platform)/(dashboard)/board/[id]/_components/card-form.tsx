@@ -54,7 +54,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
 
     if (isEditing)
       return (
-        <form className="p-3" ref={formRef} action={onSubmit}>
+        <form className="p-3 pt-1" ref={formRef} action={onSubmit}>
           <FormTextarea
             id="title"
             ref={ref}
@@ -77,11 +77,12 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
       );
 
     return (
-      <div className=" p-3">
+      <div className="p-3 pt-1">
         <Button
           className="w-full justify-start gap-1 px-2 text-sm text-muted-foreground"
           variant="ghost"
           size="sm"
+          type="button"
           onClick={enableEditing}
         >
           <Plus className="h-4 w-4 " />

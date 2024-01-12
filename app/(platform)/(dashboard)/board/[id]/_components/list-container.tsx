@@ -33,12 +33,11 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
           <ol
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="flex h-full gap-3"
+            className={`flex h-full gap-3 `}
           >
             {orderedData.map((list, index) => {
               return <ListItem key={list.id} index={index} data={list} />;
             })}
-
             {provided.placeholder}
             <ListForm boardId={boardId} />
             <li className="w-1 shrink-0 " />
