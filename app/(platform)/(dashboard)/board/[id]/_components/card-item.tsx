@@ -24,19 +24,17 @@ export const CardItem = ({ data, index }: CardItemProps) => {
   //   </Draggable>
   // );
   return (
-    <li>
-      <Draggable index={index} draggableId={data.id}>
-        {(provided) => (
-          <div
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            className="w-full truncate rounded-md bg-white p-2 text-left text-sm first:mt-1 last:mb-1"
-          >
-            {data.title}
-          </div>
-        )}
-      </Draggable>
-    </li>
+    <Draggable index={index} draggableId={data.id}>
+      {(provided) => (
+        <li
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className="w-full truncate rounded-md bg-white p-2 text-left text-sm first:mt-1 last:mb-1"
+        >
+          {data.title}
+        </li>
+      )}
+    </Draggable>
   );
 };

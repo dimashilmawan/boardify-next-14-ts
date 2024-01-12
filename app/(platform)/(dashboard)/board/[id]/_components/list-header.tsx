@@ -87,7 +87,11 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
           <button type="submit" hidden />
         </form>
       ) : (
-        <button className="w-full p-3 px-5 text-left" onClick={enableEditing}>
+        <button
+          type="button"
+          className="w-full p-3 px-5 text-left"
+          onClick={enableEditing}
+        >
           {title}
         </button>
       )}

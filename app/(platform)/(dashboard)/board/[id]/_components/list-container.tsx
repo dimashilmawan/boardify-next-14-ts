@@ -33,7 +33,7 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
   const onDragEnd: OnDragEndResponder = function (result) {
     const { destination, source, type } = result;
 
-    console.log(result);
+    // console.log(result);
     if (!destination) return;
 
     // if drop in the same position

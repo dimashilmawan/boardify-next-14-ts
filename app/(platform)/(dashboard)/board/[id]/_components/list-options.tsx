@@ -70,9 +70,8 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-60  p-3 pt-[1.125rem]" sideOffset={10}>
-        <PopoverClose asChild>
+        <PopoverClose ref={closeRef} asChild>
           <Button
-            ref={closeRef}
             variant="ghost"
             className="absolute right-1 top-1 h-auto w-auto rounded-full p-2"
           >
