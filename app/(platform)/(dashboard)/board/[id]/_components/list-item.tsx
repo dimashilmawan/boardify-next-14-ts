@@ -42,7 +42,7 @@ export const ListItem = ({ data, index }: ListItemProps) => {
               <ol
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="flex flex-col gap-2 px-3 "
+                className="flex flex-col gap-2 px-3 py-0.5"
               >
                 {data.cards.map((card, index) => (
                   <CardItem key={card.id} data={card} index={index} />
