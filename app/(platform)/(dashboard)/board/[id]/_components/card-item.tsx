@@ -1,5 +1,6 @@
 "use client";
 
+import { useCardModal } from "@/hooks/use-card-modal";
 import { Draggable } from "@hello-pangea/dnd";
 import { Card } from "@prisma/client";
 
@@ -8,32 +9,38 @@ type CardItemProps = {
   index: number;
 };
 export const CardItem = ({ data, index }: CardItemProps) => {
-  // return (
-  //   <Draggable index={index} draggableId={data.id}>
-  //     {(provided) => (
-  //       <li
-  //         {...provided.draggableProps}
-  //         {...provided.dragHandleProps}
-  //         ref={provided.innerRef}
-  //         className="w-full truncate rounded-md bg-white p-2 text-left text-sm first:mt-1 last:mb-1"
-  //       >
-  //         {/* <div {...provided.dragHandleProps}>{data.title}</div> */}
-  //         {data.title}
-  //       </li>
-  //     )}
-  //   </Draggable>
-  // );
+  const onOpen = useCardModal((state) => state.onOpen);
+
   return (
-    <Draggable index={index} draggableId={data.id}>
+    <Draggable
+      index={index}
+      draggableId={data.id}
+      disableInteractiveElementBlocking
+    >
       {(provided) => (
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className="w-full truncate rounded-md bg-white p-2 text-left text-sm first:mt-1 last:mb-1"
+          className="rounded-md bg-white "
         >
-          {data.title}
+          <button
+            className="block w-full truncate rounded-md p-2 text-left text-sm "
+            onClick={() => onOpen(data.id)}
+            type="button"
+          >
+            {data.title}
+          </button>
         </li>
+        // <li
+        //   ref={provided.innerRef}
+        //   {...provided.draggableProps}
+        //   {...provided.dragHandleProps}
+        //   onClick={() => onOpen(data.id)}
+        //   className="w-full truncate rounded-md bg-white p-2 text-left text-sm "
+        // >
+        //   {data.title}
+        // </li>
       )}
     </Draggable>
   );
