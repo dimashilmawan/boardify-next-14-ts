@@ -1,17 +1,30 @@
 "use client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useCardModal } from "@/hooks/use-card-modal";
-import { useEffect, useState } from "react";
+import { fetcher } from "@/lib/fetcher";
+import { CardWithList } from "@/types";
+import { dataTagSymbol, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { Header } from "./header";
 
 export const CardModal = () => {
   const id = useCardModal((state) => state.id);
   const isOpen = useCardModal((state) => state.isOpen);
   const onClose = useCardModal((state) => state.onClose);
-  const [data, setData] = useState(null);
+
+  const { data: cardData } = useQuery<CardWithList>({
+    queryKey: ["card", id],
+    queryFn: fetcher,
+    enabled: isOpen,
+  });
+
+  console.log({ cardData });
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>hello there</DialogContent>
+      <DialogContent>
+        {cardData ? <Header data={cardData} /> : <p>loading...</p>}
+      </DialogContent>
     </Dialog>
   );
 };
