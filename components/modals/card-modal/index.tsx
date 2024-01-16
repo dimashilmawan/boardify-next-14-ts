@@ -3,8 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useCardModal } from "@/hooks/use-card-modal";
 import { fetcher } from "@/lib/fetcher";
 import { CardWithList } from "@/types";
-import { dataTagSymbol, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Header } from "./header";
 
 export const CardModal = () => {
@@ -15,15 +14,15 @@ export const CardModal = () => {
   const { data: cardData } = useQuery<CardWithList>({
     queryKey: ["card", id],
     queryFn: fetcher,
-    enabled: isOpen,
+    // enabled: isOpen,
   });
 
-  console.log({ cardData });
+  // console.log({ cardData });
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        {cardData ? <Header data={cardData} /> : <p>loading...</p>}
+        {cardData ? <Header data={cardData} /> : <Header.Skeleton />}
       </DialogContent>
     </Dialog>
   );
