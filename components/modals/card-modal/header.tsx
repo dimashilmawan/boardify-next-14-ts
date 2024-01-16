@@ -21,8 +21,10 @@ export const Header = ({ data }: { data: CardWithList }) => {
 
   const { execute } = useAction(updateCard, {
     onSuccess(data) {
+      queryClient.invalidateQueries({
+        queryKey: ["card", data.id],
+      });
       toast.success(`Renamed to ${data.title}`);
-      queryClient.invalidateQueries();
       setTitle(data.title);
     },
     onError(error) {
@@ -35,6 +37,7 @@ export const Header = ({ data }: { data: CardWithList }) => {
   }
 
   function onSubmit(formData: FormData) {
+    console.log("submit");
     const title = formData.get("title") as string;
     const boardId = params.id as string;
 
