@@ -6,18 +6,15 @@ import { CardWithList } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "./header";
 import { FormInput } from "@/components/form/form-input";
+import { Description } from "./description";
+import { Actions } from "./actions";
 
 export const CardModal = () => {
   const id = useCardModal((state) => state.id);
   const isOpen = useCardModal((state) => state.isOpen);
   const onClose = useCardModal((state) => state.onClose);
 
-  const {
-    data: cardData,
-    error,
-    fetchStatus,
-    isFetching,
-  } = useQuery<CardWithList>({
+  const { data: cardData, isSuccess } = useQuery<CardWithList>({
     queryKey: ["card", id],
     queryFn: fetcher,
     // retry: false,
@@ -29,7 +26,27 @@ export const CardModal = () => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}> */}
       <DialogContent>
-        {cardData ? <Header data={cardData} /> : <Header.Skeleton />}
+        {isSuccess && cardData ? (
+          <Header data={cardData} />
+        ) : (
+          <Header.Skeleton />
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
+          <div className="col-span-3">
+            {isSuccess && cardData ? (
+              <Description data={cardData} />
+            ) : (
+              <Description.Skeleton />
+            )}
+          </div>
+          <div className="col-span-1">
+            {isSuccess && cardData ? (
+              <Actions data={cardData} />
+            ) : (
+              <Actions.Skeleton />
+            )}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
