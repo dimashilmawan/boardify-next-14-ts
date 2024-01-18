@@ -53,3 +53,30 @@ model Card {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum ENTITY_TYPE {
+  BOARD
+  LIST
+  CARD
+}
+
+enum ACTION {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+model AuditLog {
+  id          String      @id @default(uuid())
+  orgId       String
+  entityId    String
+  entityType  ENTITY_TYPE
+  entityTitle String
+  userId      String
+  userName    String      @db.Text
+  userImage   String      @db.Text
+  action      ACTION
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
