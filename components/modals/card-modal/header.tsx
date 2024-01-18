@@ -37,7 +37,6 @@ export const Header = ({ data }: { data: CardWithList }) => {
   }
 
   function onSubmit(formData: FormData) {
-    console.log("submit");
     const title = formData.get("title") as string;
     const boardId = params.id as string;
 
@@ -56,7 +55,7 @@ export const Header = ({ data }: { data: CardWithList }) => {
             ref={inputRef}
             onBlur={onBlur}
             defaultValue={title}
-            className="-ml-1 -mt-[0.625rem] w-2/3 truncate border-none px-1 text-xl font-semibold text-neutral-700 focus-visible:ring-input"
+            className="-ml-1 -mt-2 w-2/3 truncate border-none px-1 text-xl font-semibold text-neutral-700 focus-visible:ring-input"
           />
         </form>
         <p className="text-sm text-muted-foreground">
@@ -72,7 +71,7 @@ Header.Skeleton = function HeaderSkeleton() {
     <div className="flex items-start gap-3 ">
       <Skeleton className="h-5 w-5 " />
       <div className="w-full space-y-3">
-        <Skeleton className=" h-6 w-2/3" />
+        <Skeleton className=" h-6 w-1/2" />
         <Skeleton className="h-4 w-10" />
       </div>
     </div>
