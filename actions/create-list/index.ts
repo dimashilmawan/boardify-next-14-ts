@@ -23,9 +23,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   let list;
 
   try {
-    // const board = await db.board.findUnique({ where: { id: boardId, orgId } });
+    const board = await db.board.findUnique({ where: { id: boardId, orgId } });
 
-    // if (!board) return { error: "Board not found" };
+    if (!board) return { error: "Board not found" };
 
     const lastList = await db.list.findFirst({
       where: { boardId },

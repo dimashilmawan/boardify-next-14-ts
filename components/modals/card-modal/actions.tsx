@@ -53,7 +53,7 @@ export const Actions = ({ data }: { data: CardWithList }) => {
 
   return (
     <div className="h-full ">
-      <p className="text-xs font-semibold">Actions</p>
+      <p className="text-xs font-semibold text-neutral-700">Actions</p>
       <div className="mt-4 space-y-2">
         <Button
           onClick={onCopy}
