@@ -15,19 +15,27 @@ export const CardModal = () => {
   const isOpen = useCardModal((state) => state.isOpen);
   const onClose = useCardModal((state) => state.onClose);
 
-  const { data: cardData, isSuccess: isSuccessCard } = useQuery<CardWithList>({
+  const {
+    data: cardData,
+    isError: isErrorCard,
+    isSuccess: isSuccessCard,
+  } = useQuery<CardWithList>({
     queryKey: ["card", id],
     queryFn: fetcher,
-    // retry: false,
+    retry: 1,
     // refetchOnWindowFocus: false,
     enabled: isOpen,
   });
-  const { data: auditLogsData, isSuccess: isSuccessLogs } = useQuery<
-    AuditLog[]
-  >({
+
+  const {
+    data: auditLogsData,
+    isError: isErrorLogs,
+    isSuccess: isSuccessLogs,
+  } = useQuery<AuditLog[]>({
     queryKey: ["card-logs", id],
     queryFn: fetcher,
     enabled: isOpen,
+    retry: 1,
   });
 
   return (
@@ -37,19 +45,19 @@ export const CardModal = () => {
         {isSuccessCard && cardData ? (
           <Header data={cardData} />
         ) : (
-          <Header.Skeleton />
+          <Header.Skeleton isError={isErrorCard} />
         )}
-        <div className="grid grid-cols-1 md:grid-cols-4 md:gap-6">
-          <div className="col-span-3 space-y-4">
+        <div className="mt-3 grid grid-cols-1 md:grid-cols-4 md:gap-6">
+          <div className="col-span-3 space-y-7">
             {isSuccessCard && cardData ? (
               <Description data={cardData} />
             ) : (
-              <Description.Skeleton />
+              <Description.Skeleton isError={isErrorCard} />
             )}
             {isSuccessLogs && auditLogsData ? (
               <Activity items={auditLogsData} />
             ) : (
-              <Activity.Skeleton />
+              <Activity.Skeleton isError={isErrorLogs} />
             )}
           </div>
           <div className="col-span-1">

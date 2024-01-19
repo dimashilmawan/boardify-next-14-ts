@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAction } from "@/hooks/use-action";
 import { CardWithList } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
-import { AlignLeft } from "lucide-react";
+import { AlignLeft, ShieldAlert } from "lucide-react";
 import { useParams } from "next/navigation";
 import { KeyboardEventHandler, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -26,7 +26,10 @@ export const Description = ({ data }: { data: CardWithList }) => {
   const { execute, fieldErrors } = useAction(updateCard, {
     onSuccess(data) {
       queryClient.invalidateQueries({ queryKey: ["card", data.id] });
+      queryClient.invalidateQueries({ queryKey: ["card-logs", data.id] });
+
       toast.success(`card '${data.title}' updated`);
+
       setDescription(data.description);
       disableEditing();
     },
@@ -112,7 +115,21 @@ export const Description = ({ data }: { data: CardWithList }) => {
   );
 };
 
-Description.Skeleton = function DescriptionSkeleton() {
+Description.Skeleton = function DescriptionSkeleton({
+  isError,
+}: {
+  isError: boolean;
+}) {
+  if (isError) {
+    return (
+      <div className="flex items-center gap-3 rounded-md bg-rose-100 p-2 text-neutral-700">
+        <ShieldAlert className="h-5 w-5" />
+        <p className="-mb-1 text-sm font-semibold">
+          Failed to fetch Activity Logs
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="flex items-start gap-3">
       <Skeleton className="h-5 w-5 " />

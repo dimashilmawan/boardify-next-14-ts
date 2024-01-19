@@ -31,7 +31,7 @@ export const createAuditLog = async (props: Props) => {
         userName: user?.firstName + " " + user?.lastName,
       },
     });
-  } catch (error) {
-    console.log("Creating audit log failed ", error);
+  } catch (err) {
+    const error = new Error("Failed to created audit log");
   }
 };

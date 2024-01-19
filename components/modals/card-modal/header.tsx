@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAction } from "@/hooks/use-action";
 import { CardWithList } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
-import { Layout } from "lucide-react";
+import { Layout, ShieldAlert } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
@@ -24,6 +24,10 @@ export const Header = ({ data }: { data: CardWithList }) => {
       queryClient.invalidateQueries({
         queryKey: ["card", data.id],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id],
+      });
+
       toast.success(`Renamed to ${data.title}`);
       setTitle(data.title);
     },
@@ -66,7 +70,17 @@ export const Header = ({ data }: { data: CardWithList }) => {
   );
 };
 
-Header.Skeleton = function HeaderSkeleton() {
+Header.Skeleton = function HeaderSkeleton({ isError }: { isError?: boolean }) {
+  if (isError) {
+    return (
+      <div className="flex items-center gap-3 rounded-md bg-rose-100 p-2 text-neutral-700">
+        <ShieldAlert className="h-5 w-5" />
+        <p className="-mb-1 text-sm font-semibold">
+          Failed to fetch Activity Logs
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="flex items-start gap-3 ">
       <Skeleton className="h-5 w-5 " />

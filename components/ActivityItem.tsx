@@ -6,9 +6,9 @@ import { format } from "date-fns";
 export const ActivityItem = ({ data }: { data: AuditLog }) => {
   return (
     <li className="flex items-center gap-2">
-      <Avatar className="h-9 w-9">
+      <Avatar className="h-8 w-8">
         <AvatarImage src={data.userImage} />
-        <AvatarFallback>User Image</AvatarFallback>
+        <AvatarFallback className="text-xs">IMG</AvatarFallback>
       </Avatar>
       <div className="-mb-1">
         <p className="text-sm text-muted-foreground">
