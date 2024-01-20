@@ -39,7 +39,8 @@ export const decreaseOrgLimitCount = async () => {
 export const hasAvailableCount = async () => {
   const { orgId } = auth();
 
-  if (!orgId) throw new Error("Unauthorized!");
+  // if (!orgId) throw new Error("Unauthorized!");
+  if (!orgId) return true;
 
   const orgLimit = await db.orgLimit.findUnique({ where: { orgId } });
 
@@ -67,6 +68,7 @@ export const hasAvailableCount = async () => {
 export const getAvailableCount = async () => {
   const { orgId } = auth();
 
+  // if (!orgId) throw new Error("Unauthorized!");
   if (!orgId) return MAX_FREE_BOARDS;
 
   const orgLimit = await db.orgLimit.findUnique({ where: { orgId } });

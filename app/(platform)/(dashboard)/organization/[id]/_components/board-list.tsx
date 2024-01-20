@@ -55,7 +55,7 @@ export const BoardList = async () => {
             <span className="mt-1 text-sm">{availableCount} remaining</span>
             <Hint
               sideOffset={20}
-              description="Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace."
+              description="Free Workspaces can have up to 5 open boards. For unlimited boards,      upgrade this workspace."
             >
               <HelpCircle className="absolute bottom-2 right-2 h-4 w-4" />
             </Hint>
