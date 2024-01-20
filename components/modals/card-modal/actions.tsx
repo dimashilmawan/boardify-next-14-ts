@@ -11,7 +11,7 @@ import { Copy, Trash } from "lucide-react";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 
-export const Actions = ({ data }: { data: CardWithList }) => {
+export const Actions = ({ cardId }: { cardId: string }) => {
   const onClose = useCardModal((state) => state.onClose);
   const params = useParams();
 
@@ -43,12 +43,12 @@ export const Actions = ({ data }: { data: CardWithList }) => {
   function onCopy() {
     const boardId = params.id as string;
 
-    executeCopyCard({ boardId, id: data.id });
+    executeCopyCard({ boardId, id: cardId });
   }
   function onDelete() {
     const boardId = params.id as string;
 
-    executeDeleteCard({ boardId, id: data.id });
+    executeDeleteCard({ boardId, id: cardId });
   }
 
   return (

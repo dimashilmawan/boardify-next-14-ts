@@ -62,7 +62,7 @@ export const CardModal = () => {
           </div>
           <div className="col-span-1">
             {isSuccessCard && cardData ? (
-              <Actions data={cardData} />
+              <Actions cardId={cardData.id} />
             ) : (
               <Actions.Skeleton />
             )}
