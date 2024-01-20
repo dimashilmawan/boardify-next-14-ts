@@ -6,8 +6,8 @@ type ProModalStore = {
   onClose: () => void;
 };
 
-export const useMobileSidebar = create<ProModalStore>((set) => ({
-  isOpen: true,
+export const useProModal = create<ProModalStore>((set) => ({
+  isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
