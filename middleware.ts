@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
   beforeAuth() {},
-  publicRoutes: ["/"],
+  publicRoutes: ["/", "/api/webhook"],
   afterAuth(auth, req) {
     // handle users who aren't authenticated
     if (!auth.userId && !auth.isPublicRoute) {

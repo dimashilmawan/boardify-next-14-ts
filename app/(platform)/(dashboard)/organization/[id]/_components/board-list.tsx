@@ -3,6 +3,7 @@ import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
 import db from "@/lib/db";
 import { getAvailableCount } from "@/lib/org-limit";
+import { checkSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs";
 import { HelpCircle, User2 } from "lucide-react";
 import Image from "next/image";
@@ -15,6 +16,7 @@ export const BoardList = async () => {
 
   const boards = await db.board.findMany({ where: { orgId } });
   const availableCount = await getAvailableCount();
+  const isPro = await checkSubscription();
 
   return (
     <div className="space-y-3 py-4">
@@ -52,7 +54,9 @@ export const BoardList = async () => {
             className="relative flex aspect-video flex-col items-center justify-center rounded-md bg-muted"
           >
             <p>Create new board</p>
-            <span className="mt-1 text-sm">{availableCount} remaining</span>
+            <span className="mt-1 text-sm">
+              {isPro ? "Unlimited" : `${availableCount} remaining`}{" "}
+            </span>
             <Hint
               sideOffset={20}
               description="Free Workspaces can have up to 5 open boards. For unlimited boards,      upgrade this workspace."
