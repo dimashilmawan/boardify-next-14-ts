@@ -98,7 +98,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
             />
             <FormSubmit
               variant="ghost"
-              className="w-full justify-start font-normal hover:rounded-sm"
+              className="w-full justify-start font-normal hover:rounded-md"
             >
               Copy List
             </FormSubmit>

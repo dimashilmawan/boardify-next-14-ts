@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ variables: { colorPrimary: "#059669" } }}>
       <QueryProvider>
         <Toaster richColors />
         <CardModal />

@@ -10,7 +10,7 @@ export const Navbar = () => {
         <Button asChild variant="outline">
           <Link href="sign-in">Login</Link>
         </Button>
-        <Button asChild>
+        <Button asChild variant="primary">
           <Link href="sign-up">Get Boardify For Free</Link>
         </Button>
       </div>

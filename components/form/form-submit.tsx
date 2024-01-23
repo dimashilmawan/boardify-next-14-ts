@@ -14,13 +14,14 @@ type FormSubmitProps = {
     | "outline"
     | "secondary"
     | "ghost"
+    | "primary"
     | "link";
 };
 
 export const FormSubmit = ({
   children,
   className,
-  variant = "default",
+  variant = "primary",
   disabled,
   size = "sm",
 }: FormSubmitProps) => {

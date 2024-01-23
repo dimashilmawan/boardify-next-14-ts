@@ -12,7 +12,7 @@ export const Logo = () => {
           alt="logo"
           className="h-6 w-auto"
         />
-        <p>Boardify</p>
+        <p className="font-semibold text-neutral-700">Boardify</p>
       </div>
     </Link>
   );

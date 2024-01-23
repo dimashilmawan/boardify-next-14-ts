@@ -15,14 +15,15 @@ export default function Page() {
             calFont.className,
           )}
         >
-          <div className="flex items-center gap-2 rounded-full bg-amber-100 p-4 font-semibold text-amber-700">
+          {/* <div className="flex items-center gap-2 rounded-full bg-amber-100 p-4 font-semibold text-amber-700"> */}
+          <div className="flex items-center gap-2 rounded-full bg-[rgb(211,226,219)] p-4 font-semibold text-[#384B42]">
             <Medal />
             <span className="text-lg uppercase">no 1 task management</span>
           </div>
           <h1 className="text-3xl font-semibold md:text-6xl">
             Boardify helps team move
           </h1>
-          <p className="rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-1 text-3xl text-white md:text-6xl">
+          <p className="rounded-md bg-gradient-to-r from-[#659C82] to-[#008DD3] px-3 py-1 text-3xl text-white md:text-6xl ">
             work forward
           </p>
         </div>
@@ -32,12 +33,11 @@ export default function Page() {
             poppins.className,
           )}
         >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus
-          exercitationem, maxime velit, tempore, quas dolore natus molestiae
-          quidem aspernatur aliquam eos soluta repellat! Sit accusantium, nobis
-          doloribus quisquam similique recusandae?
+          Collaborate, manage projects, and reach new productivity peaks. From
+          high rises to the home office, the way your team works is unique -
+          accomplish it all with Boardify.
         </p>
-        <Button className="mt-8" asChild>
+        <Button className="mt-8" asChild variant="primary">
           <Link href="/sign-up">Get Boardify for free</Link>
         </Button>
       </div>
