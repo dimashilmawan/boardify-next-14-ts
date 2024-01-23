@@ -21,7 +21,7 @@ export const Info = ({ isPro }: { isPro: boolean }) => {
         />
       </div>
       <div>
-        <p className="text-xl font-semibold">{organization?.name}</p>
+        <p className="text-xl font-semibold capitalize">{organization?.name}</p>
         <div className="flex items-center gap-2 text-xs text-neutral-600">
           <CreditCard className="h-5 w-5" />
           <span>{isPro ? "Pro" : "Free"}</span>

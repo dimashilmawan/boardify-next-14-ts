@@ -67,14 +67,14 @@ export const Sidebar = ({ storageKey = "sidebar-state" }: SidebarProps) => {
 
   return (
     <>
-      <div className="mb-1 flex items-center text-xs font-medium">
-        <span className="pl-4">Workspaces</span>
+      <div className="flex items-center  py-1.5 pl-5 pr-1 text-sm font-medium">
+        <span>Workspaces</span>
         <Button
           asChild
           type="button"
           size="icon"
-          variant="ghost"
-          className="ml-auto"
+          variant="primary"
+          className="ml-auto from-emerald-500 to-emerald-500"
         >
           <Link href="/select-org">
             <Plus className="h-4 w-4" />
@@ -84,7 +84,7 @@ export const Sidebar = ({ storageKey = "sidebar-state" }: SidebarProps) => {
       <Accordion
         type="multiple"
         defaultValue={defaultAccordionValue}
-        className="space-y-2"
+        className="space-y-2 px-3"
       >
         {userMemberships.data.map(({ organization }) => (
           <NavItem

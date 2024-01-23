@@ -18,12 +18,10 @@ export const ListForm = ({ boardId }: { boardId: string }) => {
   const { execute, fieldErrors } = useAction(createList, {
     onSuccess: (data) => {
       toast.success(`List '${data.title}' created successfully`);
+      disableEditing();
     },
     onError: (error) => {
       toast.error(error);
-    },
-    onComplete() {
-      disableEditing();
     },
   });
 
@@ -54,7 +52,7 @@ export const ListForm = ({ boardId }: { boardId: string }) => {
 
   let content = (
     <Button
-      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/80 p-3 text-sm font-medium text-inherit hover:bg-white/60"
+      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/90 p-3 text-sm font-medium text-inherit hover:bg-white/80 focus-visible:ring-2 focus-visible:ring-emerald-400 "
       onClick={enableEditing}
     >
       <Plus className="h-4 w-4" />

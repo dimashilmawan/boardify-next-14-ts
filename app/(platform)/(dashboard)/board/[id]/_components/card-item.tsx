@@ -21,11 +21,11 @@ export const CardItem = ({ data, index }: CardItemProps) => {
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
           className="rounded-md bg-white "
         >
           <button
-            className="block w-full truncate rounded-md p-2 text-left text-sm "
+            {...provided.dragHandleProps}
+            className="block w-full truncate rounded-md p-2 text-left text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             onClick={() => onOpen(data.id)}
             type="button"
           >

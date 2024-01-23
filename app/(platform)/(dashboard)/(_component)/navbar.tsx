@@ -11,7 +11,7 @@ export const Navbar = () => {
       <MobileSidebar />
       <div className="flex items-center gap-4">
         <Logo />
-        <FormPopover side="bottom" align="start" sideOffset={32}>
+        {/* <FormPopover side="bottom" align="start" sideOffset={32}>
           <Button variant="primary" className="hidden  md:flex" size="icon">
             <PlusIcon className="h-5 w-5" />
           </Button>
@@ -20,7 +20,7 @@ export const Navbar = () => {
           <Button className="md:hidden">
             <Plus />
           </Button>
-        </FormPopover>
+        </FormPopover> */}
       </div>
       <div className="flex items-center gap-2">
         <OrganizationSwitcher
