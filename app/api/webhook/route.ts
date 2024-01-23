@@ -1,5 +1,6 @@
 import db from "@/lib/db";
 import { stripe } from "@/lib/stripe";
+import { format } from "date-fns";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 export async function POST(req: Request) {
@@ -27,27 +28,64 @@ export async function POST(req: Request) {
     }
   }
 
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string,
-    );
+  try {
+    // user create new subscription
+    if (event.type === "checkout.session.completed") {
+      const checkoutSession = event.data.object;
 
-    if (!session?.metadata?.orgId)
-      return new Response("Missing organization ID", { status: 400 });
+      const subscriptionId = checkoutSession.subscription as string;
+      const subscriptionSession =
+        await stripe.subscriptions.retrieve(subscriptionId);
 
-    await db.orgSubscription.create({
-      data: {
-        orgId: session.metadata.orgId,
-        stripeSubscriptionId: subscription.id,
-        stripeCurrentPeriodEnd: new Date(subscription.current_period_end),
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0].price.id,
-      },
-    });
+      if (!checkoutSession?.metadata?.orgId)
+        return new Response("Missing organization ID", { status: 400 });
+
+      await db.orgSubscription.create({
+        data: {
+          orgId: checkoutSession.metadata.orgId,
+          stripeSubscriptionId: subscriptionSession.id,
+          stripeCustomerId: subscriptionSession.customer as string,
+          stripePriceId: subscriptionSession.items.data[0].price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscriptionSession.current_period_end * 1000,
+          ),
+        },
+      });
+    }
+
+    // user renewal a subscription.
+    if (
+      event.type === "invoice.payment_succeeded" &&
+      event.data.object.billing_reason === "subscription_cycle"
+    ) {
+      const invoiceSession = event.data.object;
+
+      const subscriptionId = invoiceSession.subscription as string;
+      const subscriptionSession =
+        await stripe.subscriptions.retrieve(subscriptionId);
+
+      await db.orgSubscription.update({
+        where: { stripeSubscriptionId: subscriptionId },
+        data: {
+          stripePriceId: subscriptionSession.items.data[0].price.id,
+          stripeCurrentPeriodEnd: new Date(
+            subscriptionSession.current_period_end * 1000,
+          ),
+        },
+      });
+    }
+
+    // user's subscription ends.
+    if (event.type === "customer.subscription.deleted") {
+      await db.orgSubscription.delete({
+        where: { stripeSubscriptionId: event.data.object.id },
+      });
+    }
+  } catch (err) {
+    return new Response("Something went wrong", { status: 500 });
   }
 
-  return Response.json({ message: "success" });
+  return new Response(null, { status: 200 });
 }
 
 // 4242 4242 4242 4242
@@ -69,4 +107,18 @@ invoice.paid
 invoice.payment_succeeded
 charge.succeeded
 checkout.session.completed
+*/
+
+// cancal plan
+/*
+billing_portal.session.created
+customer.subscription.updated
+customer.subscription.updated
+*/
+
+// renew plan
+/*
+billing_portal.session.created
+customer.subscription.updated
+customer.subscription.updated
 */

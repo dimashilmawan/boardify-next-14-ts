@@ -31,8 +31,6 @@ export const decreaseOrgLimitCount = async () => {
       where: { orgId },
       data: { count: orgLimit.count > 0 ? orgLimit.count - 1 : 0 },
     });
-  } else {
-    await db.orgLimit.create({ data: { orgId, count: 1 } });
   }
 };
 
