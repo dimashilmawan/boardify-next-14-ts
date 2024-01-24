@@ -3,6 +3,7 @@
 import { useCardModal } from "@/hooks/use-card-modal";
 import { Draggable } from "@hello-pangea/dnd";
 import { Card } from "@prisma/client";
+import { DraftingCompass, Grip, Move, PiIcon } from "lucide-react";
 
 type CardItemProps = {
   data: Card;
@@ -15,7 +16,7 @@ export const CardItem = ({ data, index }: CardItemProps) => {
     <Draggable
       index={index}
       draggableId={data.id}
-      disableInteractiveElementBlocking
+      // disableInteractiveElementBlocking
     >
       {(provided) => (
         <li
@@ -24,12 +25,14 @@ export const CardItem = ({ data, index }: CardItemProps) => {
           className="rounded-md bg-white "
         >
           <button
-            {...provided.dragHandleProps}
-            className="focus-basic block w-full truncate rounded-md p-2 text-left text-sm"
+            className="focus-basic flex w-full items-center justify-between truncate rounded-md p-2 text-left text-sm"
             onClick={() => onOpen(data.id)}
             type="button"
           >
             {data.title}
+            <div {...provided.dragHandleProps}>
+              <Move className="h-4 w-4 text-neutral-600" />
+            </div>
           </button>
         </li>
         // <li

@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { CardForm } from "./card-form";
 import { CardItem } from "./card-item";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { Grip, Move } from "lucide-react";
 
 type ListItemProps = {
   data: ListWithCards;
@@ -32,7 +33,6 @@ export const ListItem = ({ data, index }: ListItemProps) => {
       {(provided) => (
         <li
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="focus-basic h-min w-64 shrink-0 rounded-md bg-white/90 shadow-lg transition-colors hover:bg-white/80"
         >
@@ -59,6 +59,12 @@ export const ListItem = ({ data, index }: ListItemProps) => {
             enableEditing={enableEditing}
             disableEditing={disableEditing}
           />
+          <div
+            {...provided.dragHandleProps}
+            className="flex justify-end pb-3 pr-3"
+          >
+            <Move className="h-4 w-4 text-neutral-600" />
+          </div>
         </li>
       )}
     </Draggable>

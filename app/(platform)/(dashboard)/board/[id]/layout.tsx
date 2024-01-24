@@ -44,7 +44,7 @@ export default async function Layout({
       />
       <div className="absolute inset-0 bg-black/20" />
       <BoardNav data={board} />
-      <div className="relative z-30 h-full pt-16">{children}</div>
+      <div className="relative z-30 h-full pt-24 md:pt-16">{children}</div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
 
 import { NavItem, Organization } from "./nav-item";
+import { LogoSideBarMobile } from "@/components/logo";
 
 interface SidebarProps {
   storageKey?: string;
@@ -67,7 +68,8 @@ export const Sidebar = ({ storageKey = "sidebar-state" }: SidebarProps) => {
 
   return (
     <>
-      <div className="flex items-center  py-1.5 pl-5 pr-1 text-sm font-medium">
+      <LogoSideBarMobile />
+      <div className="flex items-center py-1.5 pl-5 pr-1 pt-6 text-sm font-medium md:pt-3">
         <span>Workspaces</span>
         <Button
           asChild
@@ -84,7 +86,7 @@ export const Sidebar = ({ storageKey = "sidebar-state" }: SidebarProps) => {
       <Accordion
         type="multiple"
         defaultValue={defaultAccordionValue}
-        className="space-y-2 px-3"
+        className="mt-1.5 space-y-2 px-3"
       >
         {userMemberships.data.map(({ organization }) => (
           <NavItem

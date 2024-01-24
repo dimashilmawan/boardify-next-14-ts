@@ -7,7 +7,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <header className="fixed top-0 w-full border-b">
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main className="h-full">{children}</main>
       <Footer />
     </div>
   );
