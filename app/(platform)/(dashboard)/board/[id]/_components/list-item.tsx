@@ -34,7 +34,7 @@ export const ListItem = ({ data, index }: ListItemProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="h-min w-64 shrink-0 rounded-md bg-white/90 shadow-lg transition-colors hover:bg-white/80"
+          className="focus-basic h-min w-64 shrink-0 rounded-md bg-white/90 shadow-lg transition-colors hover:bg-white/80"
         >
           <ListHeader data={data} onAddCard={enableEditing} />
           <Droppable droppableId={data.id} type="card">

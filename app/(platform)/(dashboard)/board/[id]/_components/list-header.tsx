@@ -89,7 +89,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
       ) : (
         <button
           type="button"
-          className="w-full p-3 px-5 text-left"
+          className="focus-basic w-full rounded-md p-3 px-5 text-left focus-visible:ring-inset"
           onClick={enableEditing}
         >
           {title}

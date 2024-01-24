@@ -27,7 +27,7 @@ export const ProModal = () => {
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent className="max-w-md">
-        <div className="relative aspect-video">
+        <div className="relative mt-4 aspect-video overflow-hidden rounded-xl ">
           <Image
             src="/images/hero.svg"
             alt="hero image"
@@ -51,6 +51,7 @@ export const ProModal = () => {
           <Button
             onClick={handleClickUpgrade}
             disabled={isLoading}
+            variant="primary"
             className="mt-6 block w-full"
           >
             Upgrade

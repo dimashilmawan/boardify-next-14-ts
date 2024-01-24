@@ -65,7 +65,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               key={image.id}
               type="button"
               className={cn(
-                "group relative aspect-[16/10] overflow-hidden rounded-md bg-muted transition ",
+                "focus-basic group relative aspect-[16/10] overflow-hidden rounded-md bg-muted transition ",
                 pending && "cursor-wait opacity-50",
               )}
               onClick={() => {
@@ -98,7 +98,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               <Link
                 href={image.links.html}
                 target="_blank"
-                className="absolute inset-x-0 bottom-0 truncate bg-black/60 p-1 text-center text-[10px] text-white opacity-100 transition group-hover:opacity-100 lg:opacity-0"
+                className=" absolute inset-x-0 bottom-0 truncate bg-black/60 p-1 text-center text-[10px] text-white opacity-100 transition focus-visible:opacity-100 group-hover:opacity-100 lg:opacity-0"
               >
                 {image.user.name}
               </Link>

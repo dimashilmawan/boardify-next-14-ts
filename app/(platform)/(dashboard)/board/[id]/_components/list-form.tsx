@@ -52,7 +52,7 @@ export const ListForm = ({ boardId }: { boardId: string }) => {
 
   let content = (
     <Button
-      className="flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/90 p-3 text-sm font-medium text-inherit hover:bg-white/80 focus-visible:ring-2 focus-visible:ring-emerald-400 "
+      className="focus-basic flex h-auto w-full items-center justify-start gap-2 rounded-md border-0 bg-white/90 p-3 text-sm font-medium text-inherit hover:bg-white/80 "
       onClick={enableEditing}
     >
       <Plus className="h-4 w-4" />
@@ -79,7 +79,7 @@ export const ListForm = ({ boardId }: { boardId: string }) => {
           <FormSubmit>Add</FormSubmit>
           <Button
             type="button"
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={disableEditing}
           >

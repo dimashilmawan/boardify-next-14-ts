@@ -30,17 +30,17 @@ export const Navbar = () => {
           afterSelectOrganizationUrl="/organization/:id"
           appearance={{
             elements: {
-              rootBox: {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              },
+              rootBox: "flex items-center justify-between ",
             },
           }}
         />
         <UserButton
           afterSignOutUrl="/"
-          appearance={{ elements: { avatarBox: { height: 30, width: 30 } } }}
+          appearance={{
+            elements: {
+              avatarBox: "w-9 h-9",
+            },
+          }}
         />
       </div>
     </nav>
