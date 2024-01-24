@@ -30,7 +30,7 @@ export const ProModal = () => {
         <div className="relative mt-4 aspect-video overflow-hidden rounded-xl ">
           <Image
             src="/images/hero.svg"
-            alt="hero image"
+            alt="hero image "
             fill
             className="object-cover"
           />
@@ -43,7 +43,7 @@ export const ProModal = () => {
             Explore the best of Boardify
           </p>
           <ul className="list-disc pl-5 text-sm">
-            <li>Unlimited boards</li>
+            <li>Unlimited Boards</li>
             <li>Advanced checklists</li>
             <li>Admin and security features</li>
             <li>And more!</li>

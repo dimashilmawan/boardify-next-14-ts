@@ -1,9 +1,6 @@
 import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { Plus, PlusIcon } from "lucide-react";
 import { MobileSidebar } from "./mobile-sidebar";
-import { FormPopover } from "@/components/form/form-popover";
 
 export const Navbar = () => {
   return (

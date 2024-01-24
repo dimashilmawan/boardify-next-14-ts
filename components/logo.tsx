@@ -9,7 +9,7 @@ export const Logo = () => {
           src="/logo.svg"
           width={30}
           height={30}
-          alt="logo"
+          alt="logo image"
           className="h-6 w-auto"
         />
         <p className="font-semibold text-neutral-700">Boardify</p>

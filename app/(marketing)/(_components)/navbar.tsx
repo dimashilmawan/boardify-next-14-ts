@@ -11,7 +11,7 @@ export const Navbar = () => {
           <Link href="sign-in">Login</Link>
         </Button>
         <Button asChild variant="primary">
-          <Link href="sign-up">Get Boardify For Free</Link>
+          <Link href="sign-up">Get Boardify for Free</Link>
         </Button>
       </div>
     </nav>
