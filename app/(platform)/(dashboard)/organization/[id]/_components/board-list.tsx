@@ -49,7 +49,7 @@ export const BoardList = async () => {
             </Link>
           );
         })}
-        <FormPopover side="right" sideOffset={20}>
+        <FormPopover side="bottom" sideOffset={20}>
           <Button
             type="button"
             variant="outline"
