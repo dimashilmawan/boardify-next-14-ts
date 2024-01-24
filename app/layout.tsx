@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  icons: [{ href: "/logo.svg", url: "/logo.svg" }],
+  // icons: [{ href: "/logo.svg", url: "/logo.svg" }],
 };
 
 export default async function RootLayout({
